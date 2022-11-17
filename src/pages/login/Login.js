@@ -10,8 +10,8 @@ export default function Login() {
   const [password, setPassword] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefautl()
-    // console.log(email, password, 'hello')
+    e.preventDefault()
+    console.log(email, password)
   }
 
 
@@ -34,7 +34,7 @@ export default function Login() {
           value={password}
           />
       </label>
-      <button type="submit" className="btn">Login</button> 
+      <button className="btn">Login</button> 
     </form>
   )
 }
