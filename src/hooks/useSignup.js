@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { projectAuth } from "../firebase/config"
+import { useAuthContext } from "./useAuthContext"
 
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
+    const { dispatch } = useAuthContext()
 
 
     const signup = async (user, email, password) => {
@@ -14,7 +16,7 @@ export const useSignup = () => {
         try{
             //signup user
             const res = await projectAuth.createUserWithEmailAndPassword(email, password)
-            console.log(res.user)
+
 
             if(!res){
                 throw new Error('could not complete signup')
@@ -22,6 +24,9 @@ export const useSignup = () => {
 
             //add user name to progile
             await res.user.updateProfile({ displayName: user})
+
+            //dispatch login action
+            dispatch({type: 'LOGIN', payload: res.user })
 
             setIsPending(false)
             setError(null)
@@ -32,7 +37,7 @@ export const useSignup = () => {
             setIsPending(false)
         }
     }
-    
+
     return {  error, isPending, signup }
 }
 
