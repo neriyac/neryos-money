@@ -27,7 +27,7 @@ export const useFirestore = (collection) => {
     const [isCancelled, setIsCancelled] = useState(false)
 
     // collection ref
-    const ref = projectFirestore.collection(collection).add()
+    const ref = projectFirestore.collection(collection)
 
     // dispatch if not cancelled
     const dispatchIfNotCancelled = (action) => {
@@ -50,7 +50,7 @@ export const useFirestore = (collection) => {
     }
 
     // delete a document
-    const deleteDocument = async () => {
+    const deleteDocument = async (doc) => {
 
     }
 
