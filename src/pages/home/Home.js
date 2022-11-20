@@ -1,4 +1,4 @@
-import {useAuthContext} from '../../hooks/useAuthContext'
+import { useAuthContext } from '../../hooks/useAuthContext'
 import { useCollection } from '../../hooks/useCollection'
 
 //styles
@@ -11,6 +11,7 @@ import TransactionList from './TransactionList'
 
 export default function Home() {
   const { user } = useAuthContext()
+
   const { documents, error } = useCollection(
     'transactions',
     ["uid","==",user.uid],
